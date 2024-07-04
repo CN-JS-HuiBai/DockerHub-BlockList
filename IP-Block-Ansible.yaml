@@ -1,0 +1,44 @@
+
+---
+- name: add rich rules to webservice
+  hosts: webservice
+  tasks: 
+  - name: Enabled firewalld-service
+    ansible.builtin.shell:
+      cmd: systemctl enable --now firewalld
+
+  - name: add-rich-ruls-1
+    ansible.posix.firewalld:
+      rich_rule: rule family="ipv4" source address="49.65.151.219" reject
+      permanent: true
+      state: enabled
+      immediate: true
+  - name: add-rich-ruls-2
+    ansible.posix.firewalld:
+      rich_rule: rule family="ipv4" source address="117.24.0.0/13" reject
+      permanent: true
+      state: enabled
+      immediate: true
+  - name: add-rich-ruls-3
+    ansible.posix.firewalld:
+      rich_rule: rule family="ipv4" source address="113.64.0.0/11" reject
+      permanent: true
+      state: enabled
+      immediate: true
+  - name: add-rich-ruls-4
+    ansible.posix.firewalld:
+      rich_rule: rule family="ipv4" source address="123.56.44.0/24" reject
+      permanent: true
+      state: enabled
+      immediate: true
+  - name: add-rich-ruls-5
+    ansible.posix.firewalld:
+      rich_rule: rule family="ipv4" source address="36.5.184.0/22" reject
+      permanent: true
+      state: enabled
+      immediate: true
+
+  - name: This command will restart firewalld-service
+    ansible.builtin.shell:
+      cmd: firewall-cmd --reload
+
