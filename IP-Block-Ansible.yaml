@@ -1,4 +1,3 @@
-
 ---
 - name: add rich rules to webservice
   hosts: webservice
